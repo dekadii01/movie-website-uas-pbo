@@ -3,8 +3,34 @@
 {% block title %}Home - Movie Website{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1 class="text-3xl font-bold mb-4 text-center">Welcome to the Movie Website</h1>
-    <p class="text-center">Your one-stop destination for all movie information.</p>
+<div id="container-home">
+    <!-- hero section -->
+    <div class="min-h-[100dvh] bg-gradient-hero">
+        {% include "partials/navbar.html" %}
+        <div class="container mx-auto px-24 mt-[15dvh]">
+            <h1 class="text-white text-[68px] font-semibold leading-none -tracking-[0.03em]">Spider Man <br>No Way Home
+            </h1>
+            <div class="flex mt-4 gap-x-3">
+                <div class="bg-[#F5C51C] text-sm px-2 py-1 rounded-md font-bold">IMDb</div>
+                <div class="flex gap-x-3">
+                    <p class="text-white">8.2 <span style="color: rgba(255, 255, 255, 0.4);">(12.827)</span>
+                    </p>
+                    <p class="text-white"> &#8226;</p>
+                    <p style="color: rgba(255, 255, 255, 0.8);">2021</p>
+                    <p style="color: rgba(255, 255, 255, 0.8);">|</p>
+                    <p style="color: rgba(255, 255, 255, 0.8);">1 hour 55 minutes</p>
+                    <p style="color: rgba(255, 255, 255, 0.8);">|</p>
+                    <p style="color: rgba(255, 255, 255, 0.8);">Sci-fi</p>
+                </div>
+            </div>
+            <p class="text-white text-base w-[40%] mt-4">Scelerisque sed ultricies tristique. Mi in vivamus aliquam
+                varius eu
+                felis.
+                Id
+                ultricies diam turpis mi
+                tincidunt. Ut morbi sed urna tempor imperdiet eu scelerisque egestas. Interdum mi orci suspendisse in
+                s... <span class="text-[#F5C51C] cursor-pointer hover:underline">See more</span></p>
+        </div>
+    </div>
 </div>
 {% endblock %}
