@@ -1,0 +1,85 @@
+{% extends "partials/base_admin.html" %}
+{% block title %}Admin Dashboard - Movie Website{% endblock %}
+
+{% block content %}
+
+<main class="flex-1 p-10">
+
+    <div class="flex justify-between items-center mb-10">
+        <h2 class="text-white text-3xl font-semibold">Dashboard</h2>
+
+        <div class="flex items-center gap-4">
+            <div class="text-white/60">Welcome, <span class="text-white">Admin</span></div>
+            <div class="w-10 h-10 rounded-full bg-[#F5C51C] flex items-center justify-center font-bold text-black">
+                A
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-4 gap-6 mb-10">
+        <div class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl">
+            <p class="text-white/50 text-sm">Total Movies</p>
+            <h3 class="text-white text-3xl font-semibold mt-2">128</h3>
+        </div>
+        <div class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl">
+            <p class="text-white/50 text-sm">Users</p>
+            <h3 class="text-white text-3xl font-semibold mt-2">3,542</h3>
+        </div>
+        <div class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl">
+            <p class="text-white/50 text-sm">Reviews</p>
+            <h3 class="text-white text-3xl font-semibold mt-2">8,231</h3>
+        </div>
+        <div class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl">
+            <p class="text-white/50 text-sm">Revenue</p>
+            <h3 class="text-white text-3xl font-semibold mt-2">$12,840</h3>
+        </div>
+    </div>
+
+    <div class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl">
+
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-white text-xl font-semibold">Movie List</h3>
+            <a href="#" class="bg-[#F5C51C] text-black px-4 py-2 rounded-lg font-semibold">
+                + Add Movie
+            </a>
+        </div>
+
+        <table class="w-full text-left">
+            <thead>
+                <tr class="text-white/50 text-sm border-b border-white/10">
+                    <th class="py-3">Title</th>
+                    <th>Genre</th>
+                    <th>Year</th>
+                    <th>Rating</th>
+                    <th class="text-right">Action</th>
+                </tr>
+            </thead>
+            <tbody class="text-white">
+                <tr class="border-b border-white/5 hover:bg-white/5">
+                    <td class="py-3">Spider-Man: No Way Home</td>
+                    <td>Sci-Fi</td>
+                    <td>2021</td>
+                    <td>8.2</td>
+                    <td class="text-right space-x-3">
+                        <a href="#" class="text-[#F5C51C]">Edit</a>
+                        <a href="#" class="text-red-400">Delete</a>
+                    </td>
+                </tr>
+                <tr class="border-b border-white/5 hover:bg-white/5">
+                    <td class="py-3">The Batman</td>
+                    <td>Action</td>
+                    <td>2022</td>
+                    <td>8.1</td>
+                    <td class="text-right space-x-3">
+                        <a href="#" class="text-[#F5C51C]">Edit</a>
+                        <a href="#" class="text-red-400">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</main>
+
+{% endblock %}
