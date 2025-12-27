@@ -4,10 +4,11 @@
 
 {% block content %}
 <div id="container-home">
+
     <!-- hero section -->
     <div class="min-h-[100dvh] bg-gradient-hero">
         {% include "partials/navbar.html" %}
-        <div class="container mx-auto px-24 mt-[15dvh]">
+        <div class="container mx-auto px-24 my-[15dvh]">
             <h1 class="text-white text-[68px] font-semibold leading-none -tracking-[0.03em]">Spider Man <br>No Way Home
             </h1>
             <div class="flex mt-4 gap-x-3">
@@ -30,7 +31,45 @@
                 ultricies diam turpis mi
                 tincidunt. Ut morbi sed urna tempor imperdiet eu scelerisque egestas. Interdum mi orci suspendisse in
                 s... <span class="text-[#F5C51C] cursor-pointer hover:underline">See more</span></p>
+            <div class="flex mt-4 gap-x-4">
+                <a href="" class="bg-none border text-white/60 border-white/60 rounded-md px-4 py-3 font-medium">Watch
+                    trailer</a>
+                <a href="" class="bg-[#F5C51C] rounded-md px-4 py-3 font-medium"><i class="fa-solid fa-play"></i> Watch
+                    now</a>
+            </div>
+        </div>
+        <div class="pb-10">
+            <div class="container mx-auto px-24 flex gap-x-4">
+                <div class="bg-none border border-white/60 rounded-md pl-4 py-3 pb-3 pr-2 text-white cursor-pointer"
+                    id="left-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#fff" height="24" width="24">
+                        <path d="M384-96 0-480l384-384 68 68-316 316 316 316-68 68Z" />
+                    </svg>
+                </div>
+                <div class="bg-none border border-white/60 rounded-md pl-4 py-3 pb-3 pr-2 text-white cursor-pointer"
+                    id="right-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="#fff">
+                        <path d="m288-96-68-68 316-316-316-316 68-68 384 384L288-96Z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="swiper movieSwiper mt-10 no-scrollbar">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="/static/img/movie1.png"></div>
+                    <div class="swiper-slide"><img src="/static/img/movie2.png"></div>
+                    <div class="swiper-slide"><img src="/static/img/movie3.png"></div>
+                    <div class="swiper-slide"><img src="/static/img/movie4.png"></div>
+                    <div class="swiper-slide"><img src="/static/img/movie5.png"></div>
+                    <div class="swiper-slide"><img src="/static/img/movie6.png"></div>
+                    <div class="swiper-slide"><img src="/static/img/movie7.png"></div>
+                    <div class="swiper-slide"><img src="/static/img/movie8.png"></div>
+                    <div class="swiper-slide"><img src="/static/img/movie9.png"></div>
+                    <div class="swiper-slide"><img src="/static/img/movie10.png"></div>
+                </div>
+            </div>
         </div>
     </div>
+    <!-- end hero section -->
 </div>
 {% endblock %}

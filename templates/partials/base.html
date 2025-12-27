@@ -11,10 +11,35 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 
 <body>
-    <div id="parent-container">{% block content %} {% endblock %}</div>
+    <div id="parent-container" style="overflow: visible;">{% block content %} {% endblock %}</div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper(".movieSwiper", {
+            slidesPerView: 8,
+            spaceBetween: 20,
+            loop: true,
+            speed: 600,
+            grabCursor: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true
+            }
+        });
+
+        document.getElementById("left-button").addEventListener("click", () => {
+            swiper.slidePrev();
+        });
+
+        document.getElementById("right-button").addEventListener("click", () => {
+            swiper.slideNext();
+        });
+    </script>
 </body>
 
 </html>
