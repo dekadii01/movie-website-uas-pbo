@@ -1,0 +1,81 @@
+{% extends "partials/base.html" %}
+{% block title %}Login - Movie Website{% endblock %}
+
+{% block content %}
+<div class="min-h-[100dvh] bg-gradient-hero flex items-center justify-center relative">
+
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+    <div class="relative z-10 w-full max-w-md">
+
+        <div class="text-center mb-10">
+            <h1 class="text-white text-4xl font-semibold tracking-tight">
+                Movie<span class="text-[#F5C51C]">+</span>
+            </h1>
+            <p class="text-white/60 mt-2">
+                Sign in to continue watching
+            </p>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-8 shadow-2xl">
+
+            <h2 class="text-white text-2xl font-semibold mb-6">
+                Login
+            </h2>
+
+            <form method="POST" class="space-y-5">
+                {% csrf_token %}
+
+                <div>
+                    <label class="text-white/70 text-sm mb-1 block">Email</label>
+                    <input type="email" placeholder="Enter your email"
+                        class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#F5C51C]/70">
+                </div>
+
+                <div>
+                    <label class="text-white/70 text-sm mb-1 block">Password</label>
+                    <input type="password" placeholder="Enter your password"
+                        class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#F5C51C]/70">
+                </div>
+
+                <div class="flex items-center justify-between text-sm text-white/60">
+                    <label class="flex items-center gap-2">
+                        <input type="checkbox" class="accent-[#F5C51C]">
+                        Remember me
+                    </label>
+                    <a href="#" class="hover:text-[#F5C51C]">Forgot password?</a>
+                </div>
+
+                <button
+                    class="w-full bg-[#F5C51C] hover:bg-[#e0b318] transition rounded-lg py-3 text-black font-semibold shadow-lg shadow-yellow-500/20">
+                    Sign In
+                </button>
+
+            </form>
+
+            <div class="flex items-center my-6">
+                <div class="flex-1 h-px bg-white/20"></div>
+                <span class="text-white/40 text-sm px-3">OR</span>
+                <div class="flex-1 h-px bg-white/20"></div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <button
+                    class="bg-white/10 border border-white/20 hover:bg-white/20 transition rounded-lg py-2 text-white">
+                    Google
+                </button>
+                <button
+                    class="bg-white/10 border border-white/20 hover:bg-white/20 transition rounded-lg py-2 text-white">
+                    Facebook
+                </button>
+            </div>
+
+            <p class="text-center text-white/60 mt-6">
+                Don’t have an account?
+                <a href="/register" class="text-[#F5C51C] hover:underline">Sign up</a>
+            </p>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
