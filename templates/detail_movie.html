@@ -1,0 +1,99 @@
+{% extends "partials/base.html" %}
+{% block title %}Narcos{% endblock %}
+
+{% block content %}
+
+<section class="relative h-[100dvh] w-full overflow-hidden bg-black">
+    {% include 'partials/navbar.html' %}
+
+    <div class="absolute inset-0">
+        <img src="https://i.pinimg.com/736x/02/80/d3/0280d3215af9b84ebc01fe79e5beec0c.jpg"
+            class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/30"></div>
+    </div>
+
+    <div class="container relative z-10 mx-auto px-24 pt-[25dvh]">
+        <div class="max-w-2xl space-y-6">
+
+            <p class="text-[#F5C51C] font-semibold tracking-widest">NETFLIX ORIGINAL</p>
+
+            <h1 class="text-5xl font-extrabold text-white">
+                NARCOS
+            </h1>
+
+            <div class="flex items-center gap-4 text-sm text-white/70">
+                <span class="bg-white/10 px-3 py-1 rounded-lg">2017</span>
+                <span class="bg-[#F5C51C]/20 text-[#F5C51C] px-3 py-1 rounded-lg font-semibold">
+                    ⭐ 8.8
+                </span>
+                <span class="bg-white/10 px-3 py-1 rounded-lg">Crime, Drama</span>
+            </div>
+
+            <p class="text-white/70 leading-relaxed w-[75%]">
+                A chronicled look at the criminal exploits of Colombian drug lord Pablo Escobar,
+                as well as the many other drug kingpins who plagued the country through the years.
+            </p>
+
+            <div class="flex gap-4 pt-4">
+                <button
+                    class="cursor-pointer px-6 py-3 bg-[#F5C51C] text-black font-semibold rounded-lg shadow-lg shadow-yellow-500/30">
+                    ▶ Watch Now
+                </button>
+                <button
+                    class="cursor-pointer px-6 py-3 bg-white/10 border border-white/20 backdrop-blur-xl text-white rounded-lg hover:bg-white/20">
+                    + My List
+                </button>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div class="bg-black">
+    <section class="container mx-auto px-24 pb-24">
+        <h2 class="text-2xl font-bold text-white mb-6">Trending Now</h2>
+
+        <div class="grid grid-cols-5 gap-6">
+
+            {% for i in "11111" %}
+            <div
+                class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden hover:scale-105 transition cursor-pointer">
+                <img src="/static/img/movie{{ forloop.counter }}.png" class="w-full aspect-[2/3] object-cover">
+
+                <div class="p-3">
+                    <p class="text-white text-sm font-semibold group-hover:text-[#F5C51C]">
+                        Movie Title {{ forloop.counter }}
+                    </p>
+                    <p class="text-white/50 text-xs">2024</p>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </section>
+    <section class="container mx-auto px-24 pb-24">
+        <h2 class="text-2xl font-bold text-white mb-6">Recommended for You</h2>
+
+        <div class="grid grid-cols-5 gap-6">
+
+            {% for i in "12345" %}
+            <div
+                class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden hover:scale-105 transition cursor-pointer">
+                <img src="/static/img/movie{{ forloop.counter }}.png" class="w-full aspect-[2/3] object-cover">
+
+                <div class="p-3">
+                    <p class="text-white text-sm font-semibold group-hover:text-[#F5C51C]">
+                        Movie Title {{ forloop.counter }}
+                    </p>
+                    <p class="text-white/50 text-xs">2024</p>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </section>
+</div>
+
+{% include 'partials/footer.html' %}
+
+{% endblock %}

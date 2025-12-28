@@ -34,8 +34,15 @@
             <div class="flex mt-4 gap-x-4">
                 <a href="" class="bg-none border text-white/60 border-white/60 rounded-md px-4 py-3 font-medium">Watch
                     trailer</a>
-                <a href="" class="bg-[#F5C51C] rounded-md px-4 py-3 font-medium"><i class="fa-solid fa-play"></i> Watch
+                {% if user.is_authenticated %}
+                <a href="{% url 'detail_movie' %}" class="bg-[#F5C51C] rounded-md px-4 py-3 font-medium"><i
+                        class="fa-solid fa-play"></i> Watch
                     now</a>
+                {% else %}
+                <a href="{% url 'login' %}" class="bg-[#F5C51C] rounded-md px-4 py-3 font-medium"><i
+                        class="fa-solid fa-play"></i> Watch
+                    now</a>
+                {% endif %}
             </div>
         </div>
         <div class="pb-10">
@@ -71,5 +78,11 @@
         </div>
     </div>
     <!-- end hero section -->
+
+    <!-- footer -->
+    {% include 'partials/footer.html' %}
+    <!-- end footer -->
 </div>
+
+
 {% endblock %}

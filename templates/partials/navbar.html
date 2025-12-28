@@ -1,11 +1,10 @@
-<nav class="container mx-auto px-24 pt-10">
+<nav class="container mx-auto px-24 pt-10 relative z-50">
     <div class="flex justify-between items-center">
-        <div class="flex uppercase items-center gap-x-1">
-            <div class="bg-[#F5C51C] px-3 py-1 font-bold text-lg rounded-md">
-                asi
-            </div>
-            <h1 class="text-[#F5C51C] text-xl font-bold">hub</h1>
-        </div>
+        <a href="{% url 'home' %}" class="flex uppercase items-center gap-x-1">
+            <h2 class="text-2xl font-extrabold text-white tracking-wide">
+                ASI<span class="text-[#F5C51C]">HUB</span>
+            </h2>
+        </a>
 
         <div class="flex text-white gap-x-10">
             <a href="">New Movie</a>
@@ -16,7 +15,30 @@
         </div>
 
         <div class="flex items-center gap-x-5 relative">
-            <a href="#"><i class="fa-solid fa-magnifying-glass cursor-pointer text-white"></i></a>
+            <div x-data="{ open: false }" class="relative flex items-center">
+
+                <button x-show="!open" @click="open = true; $nextTick(() => $refs.search.focus())"
+                    class="text-white hover:text-[#F5C51C] transition cursor-pointer">
+                    <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                </button>
+
+                <div x-show="open" x-transition:enter="transition ease-out duration-200"
+                    x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-150"
+                    x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+                    @click.outside="open = false" class="relative">
+                    <input x-ref="search" type="text" placeholder="Search movies..." class="w-64 pl-11 pr-4 py-2.5 rounded-full 
+                   bg-white/10 backdrop-blur-xl 
+                   border border-white/20 
+                   text-white placeholder-white/50
+                   focus:outline-none 
+                   transition" />
+
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-white/70"></i>
+                </div>
+
+            </div>
+
 
             {% if request.user.is_authenticated %}
             <div class="relative group">
@@ -50,10 +72,10 @@
             </div>
 
             {% else %}
-            <a href="{% url 'login' %}"
+            <!-- <a href="{% url 'login' %}"
                 class="bg-[#F5C51C] rounded-md px-4 py-3 font-medium hover:bg-[#e0b318] transition">
                 <i class="fa-solid fa-user mr-1"></i> Login Now
-            </a>
+            </a> -->
             {% endif %}
         </div>
 

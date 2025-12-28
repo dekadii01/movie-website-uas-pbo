@@ -57,6 +57,9 @@ def login(request):
 def home(request):
     return render(request, 'index.html')
 
+def detail_movie(request):
+    return render(request, 'detail_movie.html')
+
 def admin_movie(request):
     if not request.user.is_staff:
         return redirect("home")
