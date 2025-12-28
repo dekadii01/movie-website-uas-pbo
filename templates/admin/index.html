@@ -39,6 +39,12 @@
 
         <div class="flex justify-between items-center mb-6">
             <h3 class="text-white text-xl font-semibold">Movie List</h3>
+            <form method="GET" class="relative">
+                <input type="search" name="search_movie" value="{{ search|default:'' }}"
+                    class="bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-white placeholder-white/50 focus:ring-2 focus:ring-[#F5C51C]/60 outline-none"
+                    placeholder="Search movie...">
+            </form>
+
         </div>
 
         <table class="w-full text-left">

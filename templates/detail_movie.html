@@ -18,20 +18,19 @@
             <p class="text-[#F5C51C] font-semibold tracking-widest">NETFLIX ORIGINAL</p>
 
             <h1 class="text-5xl font-extrabold text-white">
-                NARCOS
+                {{ movie.title }}
             </h1>
 
             <div class="flex items-center gap-4 text-sm text-white/70">
-                <span class="bg-white/10 px-3 py-1 rounded-lg">2017</span>
+                <span class="bg-white/10 px-3 py-1 rounded-lg">{{ movie.year }}</span>
                 <span class="bg-[#F5C51C]/20 text-[#F5C51C] px-3 py-1 rounded-lg font-semibold">
                     ⭐ 8.8
                 </span>
-                <span class="bg-white/10 px-3 py-1 rounded-lg">Crime, Drama</span>
+                <span class="bg-white/10 px-3 py-1 rounded-lg">Crime, {{ movie.genre }}</span>
             </div>
 
             <p class="text-white/70 leading-relaxed w-[75%]">
-                A chronicled look at the criminal exploits of Colombian drug lord Pablo Escobar,
-                as well as the many other drug kingpins who plagued the country through the years.
+                {{ movie.description }}
             </p>
 
             <div class="flex gap-4 pt-4">

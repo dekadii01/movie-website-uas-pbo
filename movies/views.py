@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import Movie
+from django.db.models import Q
 
 def register(request):
     if request.method == "POST":
@@ -58,13 +59,27 @@ def home(request):
     return render(request, 'index.html')
 
 def detail_movie(request):
-    return render(request, 'detail_movie.html')
+    movie_panji = Movie.objects.get(id=16)
+
+    return render(request, 'detail_movie.html', {
+        "movie": movie_panji
+    })
 
 def admin_movie(request):
     if not request.user.is_staff:
         return redirect("home")
 
+    search = request.GET.get("search_movie")
+
     movies = Movie.objects.all().order_by('-created_at')
+
+    if search:
+        movies = movies.filter(
+            Q(title__icontains=search) |
+            Q(genre__icontains=search) |
+            Q(year__icontains=search)
+        )
+
     total_movies = Movie.objects.count()
     total_users = User.objects.count()
 
@@ -72,7 +87,8 @@ def admin_movie(request):
         "user": request.user,
         "movies": movies,
         "total_movies": total_movies,
-        "total_users": total_users
+        "total_users": total_users,
+        "search": search
     })
 
 def manage_movies(request, id=None):
