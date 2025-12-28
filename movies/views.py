@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import Movie
@@ -65,15 +65,25 @@ def admin_movie(request):
         return redirect("home")
 
     movies = Movie.objects.all().order_by('-created_at')
+    total_movies = Movie.objects.count()
+    total_users = User.objects.count()
 
     return render(request, 'admin/index.html', {
         "user": request.user,
-        "movies": movies
+        "movies": movies,
+        "total_movies": total_movies,
+        "total_users": total_users
     })
 
-def manage_movies(request):
+def manage_movies(request, id=None):
     if not request.user.is_staff:
         return redirect("home")
+
+    movie = None
+
+    if id:
+        movie = get_object_or_404(Movie, id=id)
+        
 
     if request.method == "POST":
         title = request.POST.get("title")
@@ -83,20 +93,47 @@ def manage_movies(request):
         description = request.POST.get("description")
         poster = request.FILES.get("poster")
 
-        Movie.objects.create(
-            title=title,
-            year=year,
-            rating=rating,
-            genre=genre,
-            description=description,
-            poster=poster
-        )
+        if movie:
+            movie.title = title
+            movie.year = year
+            movie.rating = rating
+            movie.genre = genre
+            movie.description = description
 
+            if poster:
+                movie.poster = poster
+
+            movie.save()
+            messages.success(request, "Movie berhasil diupdate.")
+
+        else:
+            Movie.objects.create(
+                title=title,
+                year=year,
+                rating=rating,
+                genre=genre,
+                description=description,
+                poster=poster
+            )
         messages.success(request, "Movie berhasil ditambahkan.")
+
         return redirect("admin_movie")
 
-    return render(request, 'admin/manage_movie.html')
+    return render(request, 'admin/manage_movie.html',{
+        "movie": movie
+    })
+
+def delete_movie(request, id):
+    movie = get_object_or_404(Movie, id=id)
+
+    if request.method == "POST":
+        if movie.poster:
+            movie.poster.delete(save=False)
+
+        movie.delete()
+        return redirect("admin_movie")
 
 def logout(request):
     auth_logout(request)
     return redirect("home")
+

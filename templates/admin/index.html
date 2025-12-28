@@ -11,7 +11,7 @@
         <div class="flex items-center gap-4">
             <div class="text-white/60">Welcome, <span class="text-white">{{ request.user.first_name }}</span></div>
             <div class="w-10 h-10 rounded-full bg-[#F5C51C] flex items-center justify-center font-bold text-black">
-                A
+                {{ request.user.first_name|slice:":1"|upper }}
             </div>
         </div>
     </div>
@@ -19,11 +19,11 @@
     <div class="grid grid-cols-4 gap-6 mb-10">
         <div class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl">
             <p class="text-white/50 text-sm">Total Movies</p>
-            <h3 class="text-white text-3xl font-semibold mt-2">128</h3>
+            <h3 class="text-white text-3xl font-semibold mt-2">{{ total_movies }}</h3>
         </div>
         <div class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl">
             <p class="text-white/50 text-sm">Users</p>
-            <h3 class="text-white text-3xl font-semibold mt-2">3,542</h3>
+            <h3 class="text-white text-3xl font-semibold mt-2">{{ total_users }}</h3>
         </div>
         <div class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl">
             <p class="text-white/50 text-sm">Reviews</p>
@@ -39,9 +39,6 @@
 
         <div class="flex justify-between items-center mb-6">
             <h3 class="text-white text-xl font-semibold">Movie List</h3>
-            <!-- <a href="#" class="bg-[#F5C51C] text-black px-4 py-2 rounded-lg font-semibold">
-                + Add Movie
-            </a> -->
         </div>
 
         <table class="w-full text-left">
@@ -64,8 +61,17 @@
                     <td>{{ movie.rating }}</td>
                     <td><img src="{{ movie.poster.url }}" class="w-14 h-14 object-cover rounded-lg"></td>
                     <td class="text-right space-x-3">
-                        <a href="#" class="text-[#F5C51C]">Edit</a>
-                        <a href="#" class="text-red-400">Delete</a>
+                        <a href="{% url 'movie_edit' movie.id %}" class="text-[#F5C51C] hover:underline">
+                            Edit
+                        </a>
+
+                        <form action="{% url 'delete_movie' movie.id %}" method="POST" class="inline "
+                            onsubmit="return confirm('Delete this movie?');">
+                            {% csrf_token %}
+                            <button type="submit" class="text-red-400 hover:text-red-500 transition cursor-pointer">
+                                Delete
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 {% endfor %}

@@ -7,7 +7,7 @@
     {% include 'partials/navbar.html' %}
 
     <div class="absolute inset-0">
-        <img src="https://i.pinimg.com/736x/02/80/d3/0280d3215af9b84ebc01fe79e5beec0c.jpg"
+        <img src="https://i.pinimg.com/1200x/f1/0f/85/f10f851816eb5e2cd48c7dd18ba2a5fa.jpg"
             class="w-full h-full object-cover">
         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/30"></div>
     </div>
@@ -92,7 +92,53 @@
 
         </div>
     </section>
+    <section class="container  mx-auto px-24 pb-24 text-white rounded-lg">
+        <div class="bg-gradient-hero-admin h-[80dvh] rounded-lg flex flex-col justify-center items-start gap-8 px-10">
+            <p class="px-2 py-1 bg-[#F5C51C] w-fit rounded-lg font-semibold">13+</p>
+            <p class="font-semibold">Duration: 2h 08m</p>
+
+            <div class=" flex flex-col gap-10">
+                <p class="font-semibold">⭐ 8.8 <span class="text-white/50 font-light ml-1"> Action | Adventure |
+                        Sci-Fi</span></p>
+                <h2 class="text-6xl font-semibold">Jurassic World: Fallen Kingdom</h2>
+                <p class="w-[50%]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore soluta suscipit rem
+                    inventore
+                    repudiandae
+                    impedit ipsam ratione iusto consequuntur excepturi beatae, optio eos</p>
+            </div>
+
+            <div class="flex gap-4">
+                <button
+                    class="cursor-pointer px-6 py-3 bg-[#F5C51C] text-black font-semibold rounded-lg shadow-lg shadow-yellow-500/30">
+                    <i class="fas fa-play"></i> Watch Now</button>
+                <button
+                    class="cursor-pointer px-6 py-3 bg-white/10 border border-white/20 backdrop-blur-xl text-white rounded-lg hover:bg-white/20 ">
+                    <i class="fas fa-plus"></i> Add List</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-5 gap-6 mt-10">
+
+            {% for i in "12345" %}
+            <div
+                class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden hover:scale-105 transition cursor-pointer">
+                <img src="/static/img/movie{{ forloop.counter }}.png" class="w-full aspect-[2/3] object-cover">
+
+                <div class="p-3">
+                    <p class="text-white text-sm font-semibold group-hover:text-[#F5C51C]">
+                        Movie Title {{ forloop.counter }}
+                    </p>
+                    <p class="text-white/50 text-xs">2024</p>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </section>
+
+
 </div>
+
 
 {% include 'partials/footer.html' %}
 
