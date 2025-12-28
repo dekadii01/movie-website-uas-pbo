@@ -7,84 +7,79 @@
 
     <h2 class="text-white text-3xl font-semibold mb-10">Manage Movie</h2>
 
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="grid grid-cols-3 gap-10">
+            <div class="bg-black/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 h-fit">
+                <p class="text-white/70 mb-4">Movie Poster</p>
 
-    <div class="grid grid-cols-3 gap-10">
+                <div
+                    class="w-full aspect-[2/3] bg-white/5 border border-white/10 rounded-xl flex items-center justify-center overflow-hidden mb-4">
+                    <img id="posterPreview" src="/static/img/movie1.png" class="object-cover w-full h-full">
+                </div>
 
-        <!-- Poster Upload -->
-        <div class="bg-black/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 h-fit">
-            <p class="text-white/70 mb-4">Movie Poster</p>
+                <input required type="file" name="poster" id="posterInput" class="hidden" accept="image/*">
 
-            <div
-                class="w-full aspect-[2/3] bg-white/5 border border-white/10 rounded-xl flex items-center justify-center overflow-hidden mb-4">
-                <img id="posterPreview" src="/static/img/movie1.png" class="object-cover w-full h-full">
+                <button onclick="document.getElementById('posterInput').click()"
+                    class="w-full bg-[#F5C51C] text-black py-2 rounded-lg font-semibold cursor-pointer">
+                    Upload Poster
+                </button>
             </div>
 
-            <input type="file" id="posterInput" class="hidden" accept="image/*">
-
-            <button onclick="document.getElementById('posterInput').click()"
-                class="w-full bg-[#F5C51C] text-black py-2 rounded-lg font-semibold">
-                Upload Poster
-            </button>
-        </div>
-
-        <!-- Form -->
-        <div class="col-span-2 bg-black/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8">
-
-            <form method="POST" enctype="multipart/form-data" class="space-y-6">
-                {% csrf_token %}
-
-                <div>
-                    <label class="text-white/70 text-sm">Movie Title</label>
-                    <input type="text" placeholder="Enter movie title"
-                        class="w-full mt-2 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white focus:ring-[#F5C51C] focus:ring-2 outline-none">
-                </div>
-
-                <div class="grid grid-cols-2 gap-6">
+            <div class="col-span-2 bg-black/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8">
+                <div class="space-y-6">
                     <div>
-                        <label class="text-white/70 text-sm">Release Year</label>
-                        <input type="number" placeholder="2024"
-                            class="w-full mt-2 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white">
+                        <label class="text-white/70 text-sm">Movie Title</label>
+                        <input required type="text" placeholder="Enter movie title" name="title"
+                            class="w-full mt-2 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white focus:ring-[#F5C51C] focus:ring-2 outline-none">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <label class="text-white/70 text-sm">Release Year</label>
+                            <input required type="number" placeholder="2024" name="year"
+                                class="w-full mt-2 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white">
+                        </div>
+
+                        <div>
+                            <label class="text-white/70 text-sm">Rating</label>
+                            <input required type="text" placeholder="8.5" name="rating"
+                                class="w-full mt-2 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white">
+                        </div>
                     </div>
 
                     <div>
-                        <label class="text-white/70 text-sm">Rating</label>
-                        <input type="text" placeholder="8.5"
+                        <label class="text-white/70 text-sm">Genre</label>
+                        <select name="genre"
                             class="w-full mt-2 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white">
+                            <option>Sci-Fi</option>
+                            <option>Action</option>
+                            <option>Drama</option>
+                            <option>Horror</option>
+                        </select>
                     </div>
+
+                    <div>
+                        <label class="text-white/70 text-sm">Description</label>
+                        <textarea rows="5" placeholder="Movie description..." name="description"
+                            class="w-full mt-2 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white"></textarea>
+                    </div>
+
+                    <div class="flex justify-between">
+                        <a href="/admin/movies"
+                            class="px-6 py-3 border border-white/20 rounded-lg text-white/60 hover:bg-white/10">
+                            Cancel
+                        </a>
+                        <button
+                            class="px-6 py-3 bg-[#F5C51C] rounded-lg font-semibold text-black shadow-lg shadow-yellow-500/30 cursor-pointer">
+                            Save Movie
+                        </button>
+                    </div>
+
                 </div>
-
-                <div>
-                    <label class="text-white/70 text-sm">Genre</label>
-                    <select class="w-full mt-2 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white">
-                        <option>Sci-Fi</option>
-                        <option>Action</option>
-                        <option>Drama</option>
-                        <option>Horror</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="text-white/70 text-sm">Description</label>
-                    <textarea rows="5" placeholder="Movie description..."
-                        class="w-full mt-2 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white"></textarea>
-                </div>
-
-                <div class="flex justify-between">
-                    <a href="/admin/movies"
-                        class="px-6 py-3 border border-white/20 rounded-lg text-white/60 hover:bg-white/10">
-                        Cancel
-                    </a>
-                    <button
-                        class="px-6 py-3 bg-[#F5C51C] rounded-lg font-semibold text-black shadow-lg shadow-yellow-500/30">
-                        Save Movie
-                    </button>
-                </div>
-
-            </form>
-
+            </div>
         </div>
-
-    </div>
+    </form>
 
 </main>
 

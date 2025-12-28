@@ -51,30 +51,24 @@
                     <th>Genre</th>
                     <th>Year</th>
                     <th>Rating</th>
+                    <th>Poster</th>
                     <th class="text-right">Action</th>
                 </tr>
             </thead>
             <tbody class="text-white">
+                {% for movie in movies %}
                 <tr class="border-b border-white/5 hover:bg-white/5">
-                    <td class="py-3">Spider-Man: No Way Home</td>
-                    <td>Sci-Fi</td>
-                    <td>2021</td>
-                    <td>8.2</td>
+                    <td class="py-3">{{ movie.title }}</td>
+                    <td>{{ movie.genre }}</td>
+                    <td>{{ movie.year }}</td>
+                    <td>{{ movie.rating }}</td>
+                    <td><img src="{{ movie.poster.url }}" class="w-14 h-14 object-cover rounded-lg"></td>
                     <td class="text-right space-x-3">
                         <a href="#" class="text-[#F5C51C]">Edit</a>
                         <a href="#" class="text-red-400">Delete</a>
                     </td>
                 </tr>
-                <tr class="border-b border-white/5 hover:bg-white/5">
-                    <td class="py-3">The Batman</td>
-                    <td>Action</td>
-                    <td>2022</td>
-                    <td>8.1</td>
-                    <td class="text-right space-x-3">
-                        <a href="#" class="text-[#F5C51C]">Edit</a>
-                        <a href="#" class="text-red-400">Delete</a>
-                    </td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
 
