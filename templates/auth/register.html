@@ -8,7 +8,6 @@
 
     <div class="relative z-10 w-full max-w-md">
 
-        <!-- Logo -->
         <div class="text-center mb-10">
             <h1 class="text-white text-4xl font-semibold tracking-tight">
                 AsiHub<span class="text-[#F5C51C]">+</span>
@@ -29,44 +28,33 @@
 
                 <div>
                     <label class="text-white/70 text-sm mb-1 block">Full Name</label>
-                    <input type="text" placeholder="Enter your name"
-                        class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#F5C51C]/70">
+                    <input name="full_name" type="text" placeholder="Enter your name" required
+                        class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white">
                 </div>
 
                 <div>
                     <label class="text-white/70 text-sm mb-1 block">Email</label>
-                    <input type="email" placeholder="Enter your email"
-                        class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#F5C51C]/70">
+                    <input name="email" type="email" placeholder="Enter your email" required
+                        class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white">
                 </div>
 
                 <div>
                     <label class="text-white/70 text-sm mb-1 block">Password</label>
-                    <input type="password" placeholder="Create password"
-                        class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#F5C51C]/70">
+                    <input name="password" type="password" placeholder="Create password" required
+                        class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white">
                 </div>
 
                 <div>
                     <label class="text-white/70 text-sm mb-1 block">Confirm Password</label>
-                    <input type="password" placeholder="Repeat password"
-                        class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#F5C51C]/70">
+                    <input name="password2" type="password" placeholder="Repeat password" required
+                        class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white">
                 </div>
 
-                <div class="flex items-start gap-2 text-sm text-white/60">
-                    <input type="checkbox" class="mt-1 accent-[#F5C51C]">
-                    <p>
-                        I agree to the
-                        <a href="#" class="text-[#F5C51C] hover:underline">Terms</a>
-                        and
-                        <a href="#" class="text-[#F5C51C] hover:underline">Privacy Policy</a>
-                    </p>
-                </div>
-
-                <button
-                    class="w-full mt-4 bg-[#F5C51C] hover:bg-[#e0b318] transition rounded-lg py-3 text-black font-semibold shadow-lg shadow-yellow-500/20">
+                <button class="w-full mt-4 bg-[#F5C51C] rounded-lg py-3 text-black font-semibold">
                     Create Account
                 </button>
-
             </form>
+
 
             <div class="flex items-center my-6">
                 <div class="flex-1 h-px bg-white/20"></div>
