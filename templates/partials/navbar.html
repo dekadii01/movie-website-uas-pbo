@@ -63,7 +63,7 @@
                         </a>
                         {% endif %}
 
-                        <a href="{% url 'logout' %}"
+                        <a href="{% url 'logout' %}" onclick="return confirm('Yakin logout?');"
                             class="block px-4 py-2 rounded-lg text-red-400 hover:bg-red-500/10 transition">
                             <i class="fa-solid fa-right-from-bracket mr-2"></i> Logout
                         </a>
