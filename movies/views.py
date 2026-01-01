@@ -60,9 +60,16 @@ def home(request):
 
 def detail_movie(request):
     movie_panji = Movie.objects.get(id=16)
+    all_movies = Movie.objects.all()
+
+    recommended_movies = all_movies.order_by('created_at')[:5]
+    trending_movies = all_movies.order_by('-created_at')[:5]
 
     return render(request, 'detail_movie.html', {
-        "movie": movie_panji
+        "movie": movie_panji, 
+        "all_movies": all_movies,
+        "recommended_movies": recommended_movies,
+        "trending_movies": trending_movies
     })
 
 def admin_movie(request):

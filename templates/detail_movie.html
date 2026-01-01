@@ -54,16 +54,16 @@
 
         <div class="grid grid-cols-5 gap-6">
 
-            {% for i in "11111" %}
+            {% for trending in trending_movies %}
             <div
                 class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden hover:scale-105 transition cursor-pointer">
-                <img src="/static/img/movie{{ forloop.counter }}.png" class="w-full aspect-[2/3] object-cover">
+                <img src="{{ trending.poster.url }}" class="w-full aspect-[2/3] object-cover">
 
                 <div class="p-3">
                     <p class="text-white text-sm font-semibold group-hover:text-[#F5C51C]">
-                        Movie Title {{ forloop.counter }}
+                        {{ trending.title }}
                     </p>
-                    <p class="text-white/50 text-xs">2024</p>
+                    <p class="text-white/50 text-xs">{{ trending.year }}</p>
                 </div>
             </div>
             {% endfor %}
@@ -75,16 +75,16 @@
 
         <div class="grid grid-cols-5 gap-6">
 
-            {% for i in "12345" %}
+            {% for recommended in recommended_movies %}
             <div
                 class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden hover:scale-105 transition cursor-pointer">
-                <img src="/static/img/movie{{ forloop.counter }}.png" class="w-full aspect-[2/3] object-cover">
+                <img src="{{ recommended.poster.url }}" class="w-full aspect-[2/3] object-cover">
 
                 <div class="p-3">
                     <p class="text-white text-sm font-semibold group-hover:text-[#F5C51C]">
-                        Movie Title {{ forloop.counter }}
+                        {{ recommended.title }}
                     </p>
-                    <p class="text-white/50 text-xs">2024</p>
+                    <p class="text-white/50 text-xs">{{ recommended.year }}</p>
                 </div>
             </div>
             {% endfor %}
@@ -118,16 +118,16 @@
 
         <div class="grid grid-cols-5 gap-6 mt-10">
 
-            {% for i in "12345" %}
+            {% for movie in all_movies %}
             <div
                 class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden hover:scale-105 transition cursor-pointer">
-                <img src="/static/img/movie{{ forloop.counter }}.png" class="w-full aspect-[2/3] object-cover">
+                <img src="{{ movie.poster.url }}" class="w-full aspect-[2/3] object-cover">
 
                 <div class="p-3">
                     <p class="text-white text-sm font-semibold group-hover:text-[#F5C51C]">
-                        Movie Title {{ forloop.counter }}
+                        {{ movie.title }}
                     </p>
-                    <p class="text-white/50 text-xs">2024</p>
+                    <p class="text-white/50 text-xs">{{ movie.year }}</p>
                 </div>
             </div>
             {% endfor %}
