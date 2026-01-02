@@ -94,3 +94,7 @@ body {
     height: 280px;
     padding: 20px 0;
 }
+
+.genre-card {
+    @apply h-32 rounded-xl flex items-center justify-center text-white text-xl font-semibold cursor-pointer backdrop-blur-md border border-white/10 hover:scale-105 transition;
+}

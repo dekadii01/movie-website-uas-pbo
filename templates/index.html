@@ -45,8 +45,8 @@
                 {% endif %}
             </div>
         </div>
-        <div class="pb-10">
-            <div class="container mx-auto px-24 flex gap-x-4">
+        <div class="pb-10 container mx-auto px-24">
+            <div class=" flex gap-x-4">
                 <div class="bg-none border border-white/60 rounded-md pl-4 py-3 pb-3 pr-2 text-white cursor-pointer"
                     id="left-button">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#fff" height="24" width="24">
@@ -79,10 +79,231 @@
     </div>
     <!-- end hero section -->
 
-    <!-- footer -->
-    {% include 'partials/footer.html' %}
-    <!-- end footer -->
-</div>
+    <!-- movie sections -->
+    <div class="bg-black py-20">
+
+        <!-- Trending Now -->
+        <div class="container mx-auto px-24 mb-20">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-white text-3xl font-semibold tracking-tight">
+                    Trending <span class="text-[#F5C51C]">Now</span>
+                </h2>
+                <a href="#" class="text-white/50 hover:text-white text-sm">See all</a>
+            </div>
+
+            <div class="flex gap-x-6">
+                {% for i in "123456" %}
+                <div class="min-w-[200px] group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-xl">
+                        <img src="/static/img/movie{{ i }}.png"
+                            class="w-full h-[300px] object-cover group-hover:scale-110 transition duration-500" />
+                        <div
+                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+                            <p class="text-white font-semibold">Spider-Man</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Recommended -->
+        <div class="container mx-auto px-24 mb-20">
+            <h2 class="text-white text-3xl font-semibold mb-6">
+                Recommended <span class="text-[#F5C51C]">For You</span>
+            </h2>
+
+            <div class="grid grid-cols-5 gap-6">
+                {% for i in "1234567890" %}
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-xl">
+                        <img src="/static/img/movie{{ i|default:1 }}.png"
+                            class="w-full h-[280px] object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                            <p class="text-white text-sm font-medium">Movie Title</p>
+                            <p class="text-white/50 text-xs">Action, Sci-Fi</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
 
 
-{% endblock %}
+        <!-- Movie by Genre (Cinematic Version) -->
+        <div class="container mx-auto px-24 mb-20">
+            <div class="flex justify-between items-end mb-10">
+                <div>
+                    <h2 class="text-white text-4xl font-semibold tracking-tight">
+                        Browse by <span class="text-[#F5C51C]">Genre</span>
+                    </h2>
+                    <p class="text-white/50 mt-2">
+                        Explore movies based on your favorite mood and style
+                    </p>
+                </div>
+                <a href="#" class="text-white/50 hover:text-white text-sm">View all genres</a>
+            </div>
+
+            <div class="grid grid-cols-12 gap-6">
+
+                <!-- Action -->
+                <div class="col-span-5 group relative h-[320px] rounded-2xl overflow-hidden cursor-pointer">
+                    <img src="https://i.pinimg.com/1200x/6b/b5/6f/6bb56ffc81e603ead31ffa716543ea7d.jpg"
+                        class="absolute inset-0 w-full h-full object-cover scale-110 group-hover:scale-100 transition duration-700" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+
+                    <div class="absolute bottom-6 left-6">
+                        <p class="text-[#F5C51C] text-sm tracking-widest">GENRE</p>
+                        <h3 class="text-white text-4xl font-bold">Action</h3>
+                        <p class="text-white/60 text-sm mt-2">Explosions, heroes, adrenaline</p>
+                    </div>
+                </div>
+
+                <!-- Romance -->
+                <div class="col-span-4 group relative h-[320px] rounded-2xl overflow-hidden cursor-pointer">
+                    <img src="https://i.pinimg.com/736x/bc/02/ea/bc02ea225d293fc5370edb8761e40335.jpg"
+                        class="absolute inset-0 w-full h-full object-cover scale-110 group-hover:scale-100 transition duration-700" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+
+                    <div class="absolute bottom-6 left-6">
+                        <p class="text-[#F5C51C] text-sm tracking-widest">GENRE</p>
+                        <h3 class="text-white text-3xl font-bold">Romance</h3>
+                        <p class="text-white/60 text-sm mt-2">Love stories & emotions</p>
+                    </div>
+                </div>
+
+                <!-- Sci-Fi -->
+                <div class="col-span-3 group relative h-[320px] rounded-2xl overflow-hidden cursor-pointer">
+                    <img src="https://i.pinimg.com/1200x/31/19/c2/3119c2862e72a656270e893e1c770312.jpg"
+                        class="absolute inset-0 w-full h-full object-cover scale-110 group-hover:scale-100 transition duration-700" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+
+                    <div class="absolute bottom-6 left-6">
+                        <p class="text-[#F5C51C] text-sm tracking-widest">GENRE</p>
+                        <h3 class="text-white text-3xl font-bold">Sci-Fi</h3>
+                        <p class="text-white/60 text-sm mt-2">Future & technology</p>
+                    </div>
+                </div>
+
+                <!-- Drama -->
+                <div class="col-span-3 group relative h-[260px] rounded-2xl overflow-hidden cursor-pointer">
+                    <img src="https://i.pinimg.com/736x/42/da/03/42da0337b157fb0b614722cb5afcc466.jpg"
+                        class="absolute inset-0 w-full h-full object-cover scale-110 group-hover:scale-100 transition duration-700" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+
+                    <div class="absolute bottom-6 left-6">
+                        <h3 class="text-white text-2xl font-bold">Drama</h3>
+                    </div>
+                </div>
+
+                <!-- Horror -->
+                <div class="col-span-5 group relative h-[260px] rounded-2xl overflow-hidden cursor-pointer">
+                    <img src="https://i.pinimg.com/1200x/3e/97/a6/3e97a67369f108696390d15696920557.jpg"
+                        class="absolute inset-0 w-full h-full object-cover scale-110 group-hover:scale-100 transition duration-700" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+
+                    <div class="absolute bottom-6 left-6">
+                        <h3 class="text-white text-3xl font-bold">Horror</h3>
+                    </div>
+                </div>
+
+                <!-- Fantasy -->
+                <div class="col-span-4 group relative h-[260px] rounded-2xl overflow-hidden cursor-pointer">
+                    <img src="https://i.pinimg.com/736x/42/0c/63/420c635a4965ac34bf46f67cd473b8ad.jpg"
+                        class="absolute inset-0 w-full h-full object-cover scale-110 group-hover:scale-100 transition duration-700" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+
+                    <div class="absolute bottom-6 left-6">
+                        <h3 class="text-white text-3xl font-bold">Fantasy</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Award Movies -->
+        <div class="container mx-auto px-24 mb-24">
+            <h2 class="text-white text-3xl font-semibold mb-8">
+                Award <span class="text-[#F5C51C]">Movies</span>
+            </h2>
+
+            <div class="grid grid-cols-5 gap-6">
+
+                <!-- Movie 1 -->
+                <div
+                    class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden hover:scale-105 transition cursor-pointer">
+                    <img src="/static/img/movie1.png" class="w-full aspect-[2/3] object-cover">
+
+                    <div class="p-3">
+                        <p class="text-white text-sm font-semibold group-hover:text-[#F5C51C]">
+                            Oppenheimer
+                        </p>
+                        <p class="text-white/50 text-xs">2023 • Best Picture</p>
+                    </div>
+                </div>
+
+                <!-- Movie 2 -->
+                <div
+                    class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden hover:scale-105 transition cursor-pointer">
+                    <img src="/static/img/movie2.png" class="w-full aspect-[2/3] object-cover">
+
+                    <div class="p-3">
+                        <p class="text-white text-sm font-semibold group-hover:text-[#F5C51C]">
+                            Parasite
+                        </p>
+                        <p class="text-white/50 text-xs">2019 • Best Picture</p>
+                    </div>
+                </div>
+
+                <!-- Movie 3 -->
+                <div
+                    class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden hover:scale-105 transition cursor-pointer">
+                    <img src="/static/img/movie3.png" class="w-full aspect-[2/3] object-cover">
+
+                    <div class="p-3">
+                        <p class="text-white text-sm font-semibold group-hover:text-[#F5C51C]">
+                            Everything Everywhere
+                        </p>
+                        <p class="text-white/50 text-xs">2022 • Best Picture</p>
+                    </div>
+                </div>
+
+                <!-- Movie 4 -->
+                <div
+                    class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden hover:scale-105 transition cursor-pointer">
+                    <img src="/static/img/movie4.png" class="w-full aspect-[2/3] object-cover">
+
+                    <div class="p-3">
+                        <p class="text-white text-sm font-semibold group-hover:text-[#F5C51C]">
+                            The Shape of Water
+                        </p>
+                        <p class="text-white/50 text-xs">2017 • Best Picture</p>
+                    </div>
+                </div>
+
+                <!-- Movie 5 -->
+                <div
+                    class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden hover:scale-105 transition cursor-pointer">
+                    <img src="/static/img/movie5.png" class="w-full aspect-[2/3] object-cover">
+
+                    <div class="p-3">
+                        <p class="text-white text-sm font-semibold group-hover:text-[#F5C51C]">
+                            Gladiator
+                        </p>
+                        <p class="text-white/50 text-xs">2000 • Best Picture</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+        <!-- footer -->
+        {% include 'partials/footer.html' %}
+        <!-- end footer -->
+    </div>
+
+
+    {% endblock %}
