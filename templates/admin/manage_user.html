@@ -1,0 +1,113 @@
+{% extends "partials/base_admin.html" %}
+<!--  -->
+{% block title %}Manage User - Admin{% endblock %}
+<!--  -->
+{% block content %}
+
+<main class="flex-1 p-10">
+  <h2 class="text-white text-3xl font-semibold mb-10">Manage User</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+
+    <div class="grid grid-cols-2 gap-10">
+      <div
+        class="bg-black/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8"
+      >
+        <div class="space-y-6">
+          <div>
+            <label class="text-white/70 text-sm">Username</label>
+            <input
+              required
+              type="text"
+              name="username"
+              value="{{ user.username }}"
+              class="w-full mt-2 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white"
+            />
+          </div>
+
+          <div>
+            <label class="text-white/70 text-sm">Email</label>
+            <input
+              required
+              type="email"
+              name="email"
+              value="{{ user.email }}"
+              class="w-full mt-2 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white"
+            />
+          </div>
+
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <label class="text-white/70 text-sm">First Name</label>
+              <input
+                type="text"
+                name="first_name"
+                value="{{ user.first_name }}"
+                class="w-full mt-2 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white"
+              />
+            </div>
+
+            <div>
+              <label class="text-white/70 text-sm">Last Name</label>
+              <input
+                type="text"
+                name="last_name"
+                value="{{ user.last_name }}"
+                class="w-full mt-2 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white"
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-6">
+            <label class="flex items-center gap-3 text-white/70">
+              <input
+                type="checkbox"
+                name="is_staff"
+                {%
+                if
+                user.is_staff
+                %}checked{%
+                endif
+                %}
+              />
+              Staff
+            </label>
+
+            <label class="flex items-center gap-3 text-white/70">
+              <input
+                type="checkbox"
+                name="is_active"
+                {%
+                if
+                user.is_active
+                %}checked{%
+                endif
+                %}
+              />
+              Active
+            </label>
+          </div>
+
+          <div class="flex justify-between">
+            <a
+              href="{% url 'user_list' %}"
+              class="px-6 py-3 border border-white/20 rounded-lg text-white/60 hover:bg-white/10"
+            >
+              Cancel
+            </a>
+
+            <button
+              type="submit"
+              class="px-6 py-3 bg-[#F5C51C] rounded-lg font-semibold text-black"
+            >
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</main>
+
+{% endblock %}

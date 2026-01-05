@@ -6,6 +6,7 @@ from .models import Movie
 from django.core.exceptions import ValidationError
 from .services.auth_service import AuthService
 from .services.movie_service import MovieService
+from .services.user_service import UserService
 
 def register(request):
     if request.method == "POST":
@@ -118,6 +119,47 @@ def delete_movie(request, id):
     if request.method == "POST":
         movie.delete_with_poster()
         return redirect("admin_movie")
+
+# menampilkan semua user yg terdaftar di database pada halaman adminuser
+def user_list(request):
+    if not request.user.is_staff:
+        return redirect("home")
+
+    users = User.objects.all().order_by("-date_joined")
+    total_movies = Movie.objects.count()
+    total_users = User.objects.count()
+
+    return render(request, "admin/users.html", {
+        'users': users,
+        "total_movies": total_movies,
+        "total_users": total_users
+    })
+
+def update_user(request, id):
+    if not request.user.is_staff:
+        return redirect("home")
+    
+    user = get_object_or_404(User, id= id)
+
+    if request.method == "POST":
+        UserService.update_user(id, request.POST)
+        messages.success(request, "User berhasil di update")
+        return redirect("user_list")
+    
+    return render(request, "admin/manage_user.html", {
+        "user": user
+    })
+
+
+def delete_user(request, id):
+    if not request.user.is_staff:
+        return redirect("home")
+
+    if request.method == "POST":
+        UserService.delete_user(id)
+        messages.success(request, "User deleted successfully")
+        return redirect("user_list")
+
 
 def logout(request):
     auth_logout(request)

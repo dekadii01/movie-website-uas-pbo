@@ -1,48 +1,63 @@
-<aside class="w-72 bg-black/60 backdrop-blur-xl border-r border-white/10 p-6 h-[100dvh] ">
-    <div class="mb-10">
-        <h1 class="text-white text-3xl font-semibold">
-            AsiHub<span class="text-[#F5C51C]">+</span>
-        </h1>
-        <p class="text-white/50 text-sm mt-1">Admin Panel</p>
-    </div>
+<aside
+  class="w-72 bg-black/60 backdrop-blur-xl border-r border-white/10 p-6 h-[100dvh]"
+>
+  <div class="mb-10">
+    <h1 class="text-white text-3xl font-semibold">
+      AsiHub<span class="text-[#F5C51C]">+</span>
+    </h1>
+    <p class="text-white/50 text-sm mt-1">Admin Panel</p>
+  </div>
 
-    <nav class="space-y-3">
-        <a href="{% url 'admin_movie' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl
-           {% if request.resolver_match.url_name == 'admin_movie' %}
-               bg-white/10 text-white
-           {% else %}
-               hover:bg-white/10 text-white/70
-           {% endif %}">
-            <i class="fa-solid fa-chart-line
-            {% if request.resolver_match.url_name == 'admin_movie' %} text-[#F5C51C] {% endif %}"></i>
-            Dashboard
-        </a>
+  <nav class="space-y-3">
+    <a
+      href="{% url 'admin_movie' %}"
+      class="flex items-center gap-3 px-4 py-3 rounded-xl {% if request.resolver_match.url_name == 'admin_movie' %} bg-white/10 text-white {% else %} hover:bg-white/10 text-white/70 {% endif %}"
+    >
+      <i
+        class="fa-solid fa-chart-line {% if request.resolver_match.url_name == 'admin_movie' %} text-[#F5C51C] {% endif %}"
+      ></i>
+      Dashboard
+    </a>
 
-        <a href="{% url 'manage_movies' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl
-           {% if request.resolver_match.url_name == 'manage_movies' %}
-               bg-white/10 text-white
-           {% else %}
-               hover:bg-white/10 text-white/70
-           {% endif %}">
-            <i class="fa-solid fa-film
-            {% if request.resolver_match.url_name == 'manage_movies' %} text-[#F5C51C] {% endif %}"></i>
-            Movies
-        </a>
-        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 text-white/70">
-            <i class="fa-solid fa-users"></i> Users
-        </a>
-        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 text-white/70">
-            <i class="fa-solid fa-tags"></i> Genres
-        </a>
-        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 text-white/70">
-            <i class="fa-solid fa-gear"></i> Settings
-        </a>
-    </nav>
+    <a
+      href="{% url 'manage_movies' %}"
+      class="flex items-center gap-3 px-4 py-3 rounded-xl {% if request.resolver_match.url_name == 'manage_movies' %} bg-white/10 text-white {% else %} hover:bg-white/10 text-white/70 {% endif %}"
+    >
+      <i
+        class="fa-solid fa-film {% if request.resolver_match.url_name == 'manage_movies' %} text-[#F5C51C] {% endif %}"
+      ></i>
+      Movies
+    </a>
+    <a
+      href="{% url 'user_list' %}"
+      class="flex items-center gap-3 px-4 py-3 rounded-xl {% if request.resolver_match.url_name == 'user_list' %} bg-white/10 text-white {% else %} hover:bg-white/10 text-white/70 {% endif %}"
+    >
+      <i
+        class="fa-solid fa-users {% if request.resolver_match.url_name == 'user_list' %} text-[#F5C51C] {% endif %}"
+      ></i>
+      Users
+    </a>
+    <a
+      href="#"
+      class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 text-white/70"
+    >
+      <i class="fa-solid fa-tags"></i> Genres
+    </a>
+    <a
+      href="#"
+      class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 text-white/70"
+    >
+      <i class="fa-solid fa-gear"></i> Settings
+    </a>
+  </nav>
 
-    <div class="absolute bottom-6 left-6 right-6">
-        <a href="/logout" onclick="return confirm('Yakin logout?');"
-            class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-red-500/10 text-red-400 hover:bg-red-500/20">
-            <i class="fa-solid fa-right-from-bracket"></i> Logout
-        </a>
-    </div>
+  <div class="absolute bottom-6 left-6 right-6">
+    <a
+      href="/logout"
+      onclick="return confirm('Yakin logout?');"
+      class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-red-500/10 text-red-400 hover:bg-red-500/20"
+    >
+      <i class="fa-solid fa-right-from-bracket"></i> Logout
+    </a>
+  </div>
 </aside>
