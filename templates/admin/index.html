@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<main class="flex-1 p-10">
+<main class="flex-1 p-10 overflow-y-hidden">
 
     <div class="flex justify-between items-center mb-10">
         <h2 class="text-white text-3xl font-semibold">Dashboard</h2>
@@ -11,7 +11,7 @@
         <div class="flex items-center gap-4">
             <div class="text-white/60">Welcome, <span class="text-white">{{ request.user.first_name }}</span></div>
             <div class="w-10 h-10 rounded-full bg-[#F5C51C] flex items-center justify-center font-bold text-black">
-                A
+                {{ request.user.first_name|slice:":1"|upper }}
             </div>
         </div>
     </div>
@@ -19,11 +19,11 @@
     <div class="grid grid-cols-4 gap-6 mb-10">
         <div class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl">
             <p class="text-white/50 text-sm">Total Movies</p>
-            <h3 class="text-white text-3xl font-semibold mt-2">128</h3>
+            <h3 class="text-white text-3xl font-semibold mt-2">{{ total_movies }}</h3>
         </div>
         <div class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl">
             <p class="text-white/50 text-sm">Users</p>
-            <h3 class="text-white text-3xl font-semibold mt-2">3,542</h3>
+            <h3 class="text-white text-3xl font-semibold mt-2">{{ total_users }}</h3>
         </div>
         <div class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl">
             <p class="text-white/50 text-sm">Reviews</p>
@@ -35,13 +35,17 @@
         </div>
     </div>
 
-    <div class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl">
+    <div
+        class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl overflow-y-scroll h-[65dvh]">
 
         <div class="flex justify-between items-center mb-6">
             <h3 class="text-white text-xl font-semibold">Movie List</h3>
-            <!-- <a href="#" class="bg-[#F5C51C] text-black px-4 py-2 rounded-lg font-semibold">
-                + Add Movie
-            </a> -->
+            <form method="GET" class="relative">
+                <input type="search" name="search_movie" value="{{ search|default:'' }}"
+                    class="bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-white placeholder-white/50 focus:ring-2 focus:ring-[#F5C51C]/60 outline-none"
+                    placeholder="Search movie...">
+            </form>
+
         </div>
 
         <table class="w-full text-left">
@@ -51,30 +55,41 @@
                     <th>Genre</th>
                     <th>Year</th>
                     <th>Rating</th>
+                    <th>Poster</th>
                     <th class="text-right">Action</th>
                 </tr>
             </thead>
             <tbody class="text-white">
+                {% if movies %}
+                {% for movie in movies %}
                 <tr class="border-b border-white/5 hover:bg-white/5">
-                    <td class="py-3">Spider-Man: No Way Home</td>
-                    <td>Sci-Fi</td>
-                    <td>2021</td>
-                    <td>8.2</td>
+                    <td class="py-3">{{ movie.title }}</td>
+                    <td>{{ movie.genre }}</td>
+                    <td>{{ movie.year }}</td>
+                    <td>{{ movie.rating }}</td>
+                    <td><img src="{{ movie.poster.url }}" class="w-14 h-14 object-cover rounded-lg"></td>
                     <td class="text-right space-x-3">
-                        <a href="#" class="text-[#F5C51C]">Edit</a>
-                        <a href="#" class="text-red-400">Delete</a>
+                        <a href="{% url 'movie_edit' movie.id %}" class="text-[#F5C51C] hover:underline">
+                            Edit
+                        </a>
+
+                        <form action="{% url 'delete_movie' movie.id %}" method="POST" class="inline "
+                            onsubmit="return confirm('Delete this movie?');">
+                            {% csrf_token %}
+                            <button type="submit" class="text-red-400 hover:text-red-500 transition cursor-pointer">
+                                Delete
+                            </button>
+                        </form>
                     </td>
                 </tr>
-                <tr class="border-b border-white/5 hover:bg-white/5">
-                    <td class="py-3">The Batman</td>
-                    <td>Action</td>
-                    <td>2022</td>
-                    <td>8.1</td>
-                    <td class="text-right space-x-3">
-                        <a href="#" class="text-[#F5C51C]">Edit</a>
-                        <a href="#" class="text-red-400">Delete</a>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="6" class="text-center py-6 text-white/50">
+                        No movies found.
                     </td>
                 </tr>
+                {% endif %}
             </tbody>
         </table>
 

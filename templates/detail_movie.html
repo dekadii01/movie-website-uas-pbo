@@ -1,0 +1,144 @@
+{% extends "partials/base.html" %}
+{% block title %}{{ movie.title }}{% endblock %}
+
+{% block content %}
+
+<section class="relative h-[100dvh] w-full overflow-hidden bg-black">
+    {% include 'partials/navbar.html' %}
+
+    <div class="absolute inset-0">
+        <img src="https://i.pinimg.com/1200x/f1/0f/85/f10f851816eb5e2cd48c7dd18ba2a5fa.jpg"
+            class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/30"></div>
+    </div>
+
+    <div class="container relative z-10 mx-auto px-24 pt-[25dvh]">
+        <div class="max-w-2xl space-y-6">
+
+            <p class="text-[#F5C51C] font-semibold tracking-widest">NETFLIX ORIGINAL</p>
+
+            <h1 class="text-5xl font-extrabold text-white">
+                {{ movie.title }}
+            </h1>
+
+            <div class="flex items-center gap-4 text-sm text-white/70">
+                <span class="bg-white/10 px-3 py-1 rounded-lg">{{ movie.year }}</span>
+                <span class="bg-[#F5C51C]/20 text-[#F5C51C] px-3 py-1 rounded-lg font-semibold">
+                    ⭐ 8.8
+                </span>
+                <span class="bg-white/10 px-3 py-1 rounded-lg">Crime, {{ movie.genre }}</span>
+            </div>
+
+            <p class="text-white/70 leading-relaxed w-[75%]">
+                {{ movie.description }}
+            </p>
+
+            <div class="flex gap-4 pt-4">
+                <button
+                    class="cursor-pointer px-6 py-3 bg-[#F5C51C] text-black font-semibold rounded-lg shadow-lg shadow-yellow-500/30">
+                    ▶ Watch Now
+                </button>
+                <button
+                    class="cursor-pointer px-6 py-3 bg-white/10 border border-white/20 backdrop-blur-xl text-white rounded-lg hover:bg-white/20">
+                    + My List
+                </button>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div class="bg-black">
+    <section class="container mx-auto px-24 pb-24">
+        <h2 class="text-2xl font-bold text-white mb-6">Trending Now</h2>
+
+        <div class="grid grid-cols-5 gap-6">
+
+            {% for trending in trending_movies %}
+            <div
+                class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden hover:scale-105 transition cursor-pointer">
+                <img src="{{ trending.poster.url }}" class="w-full aspect-[2/3] object-cover">
+
+                <div class="p-3">
+                    <p class="text-white text-sm font-semibold group-hover:text-[#F5C51C]">
+                        {{ trending.title }}
+                    </p>
+                    <p class="text-white/50 text-xs">{{ trending.year }}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </section>
+    <section class="container mx-auto px-24 pb-24">
+        <h2 class="text-2xl font-bold text-white mb-6">Recommended for You</h2>
+
+        <div class="grid grid-cols-5 gap-6">
+
+            {% for recommended in recommended_movies %}
+            <div
+                class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden hover:scale-105 transition cursor-pointer">
+                <img src="{{ recommended.poster.url }}" class="w-full aspect-[2/3] object-cover">
+
+                <div class="p-3">
+                    <p class="text-white text-sm font-semibold group-hover:text-[#F5C51C]">
+                        {{ recommended.title }}
+                    </p>
+                    <p class="text-white/50 text-xs">{{ recommended.year }}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </section>
+    <section class="container  mx-auto px-24 pb-24 text-white rounded-lg">
+        <div class="bg-gradient-hero-admin h-[80dvh] rounded-lg flex flex-col justify-center items-start gap-8 px-10">
+            <p class="px-2 py-1 bg-[#F5C51C] w-fit rounded-lg font-semibold">13+</p>
+            <p class="font-semibold">Duration: 2h 08m</p>
+
+            <div class=" flex flex-col gap-10">
+                <p class="font-semibold">⭐ 8.8 <span class="text-white/50 font-light ml-1"> Action | Adventure |
+                        Sci-Fi</span></p>
+                <h2 class="text-6xl font-semibold">Jurassic World: Fallen Kingdom</h2>
+                <p class="w-[50%]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore soluta suscipit rem
+                    inventore
+                    repudiandae
+                    impedit ipsam ratione iusto consequuntur excepturi beatae, optio eos</p>
+            </div>
+
+            <div class="flex gap-4">
+                <button
+                    class="cursor-pointer px-6 py-3 bg-[#F5C51C] text-black font-semibold rounded-lg shadow-lg shadow-yellow-500/30">
+                    <i class="fas fa-play"></i> Watch Now</button>
+                <button
+                    class="cursor-pointer px-6 py-3 bg-white/10 border border-white/20 backdrop-blur-xl text-white rounded-lg hover:bg-white/20 ">
+                    <i class="fas fa-plus"></i> Add List</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-5 gap-6 mt-10">
+
+            {% for movie in all_movies %}
+            <div
+                class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden hover:scale-105 transition cursor-pointer">
+                <img src="{{ movie.poster.url }}" class="w-full aspect-[2/3] object-cover">
+
+                <div class="p-3">
+                    <p class="text-white text-sm font-semibold group-hover:text-[#F5C51C]">
+                        {{ movie.title }}
+                    </p>
+                    <p class="text-white/50 text-xs">{{ movie.year }}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </section>
+
+
+</div>
+
+
+{% include 'partials/footer.html' %}
+
+{% endblock %}

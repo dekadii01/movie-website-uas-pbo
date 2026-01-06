@@ -1,0 +1,118 @@
+{% extends "partials/base_admin.html" %} {% block title %}Admin Dashboard -
+Movie Website{% endblock %} {% block content %}
+
+<main class="flex-1 p-10 overflow-y-hidden">
+  <div class="flex justify-between items-center mb-10">
+    <h2 class="text-white text-3xl font-semibold">Dashboard</h2>
+
+    <div class="flex items-center gap-4">
+      <div class="text-white/60">
+        Welcome, <span class="text-white">{{ request.user.first_name }}</span>
+      </div>
+      <div
+        class="w-10 h-10 rounded-full bg-[#F5C51C] flex items-center justify-center font-bold text-black"
+      >
+        {{ request.user.first_name|slice:":1"|upper }}
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-4 gap-6 mb-10">
+    <div
+      class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl"
+    >
+      <p class="text-white/50 text-sm">Total Movies</p>
+      <h3 class="text-white text-3xl font-semibold mt-2">{{ total_movies }}</h3>
+    </div>
+    <div
+      class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl"
+    >
+      <p class="text-white/50 text-sm">Users</p>
+      <h3 class="text-white text-3xl font-semibold mt-2">{{ total_users }}</h3>
+    </div>
+    <div
+      class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl"
+    >
+      <p class="text-white/50 text-sm">Reviews</p>
+      <h3 class="text-white text-3xl font-semibold mt-2">8,231</h3>
+    </div>
+    <div
+      class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl"
+    >
+      <p class="text-white/50 text-sm">Revenue</p>
+      <h3 class="text-white text-3xl font-semibold mt-2">$12,840</h3>
+    </div>
+  </div>
+
+  <div
+    class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl overflow-y-scroll h-[65dvh]"
+  >
+    <div class="flex justify-between items-center mb-6">
+      <h3 class="text-white text-xl font-semibold">Movie List</h3>
+      <form method="GET" class="relative">
+        <input
+          type="search"
+          name="search_movie"
+          value="{{ search|default:'' }}"
+          class="bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-white placeholder-white/50 focus:ring-2 focus:ring-[#F5C51C]/60 outline-none"
+          placeholder="Search movie..."
+        />
+      </form>
+    </div>
+
+    <table class="w-full text-left">
+      <thead>
+        <tr class="text-white/50 text-sm border-b border-white/10">
+          <th>Username</th>
+          <th>Email</th>
+          <th>Staff</th>
+          <th>Active</th>
+          <th>Date Joined</th>
+          <th class="text-right">Action</th>
+        </tr>
+      </thead>
+      <tbody class="text-white">
+        {% if users %} {% for user in users %}
+        <tr class="border-b border-white/5 hover:bg-white/5">
+          <td>{{ user.first_name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.is_staff }}</td>
+          <td>{{ user.is_active }}</td>
+          <td>{{ user.date_joined }}</td>
+          <td class="text-right space-x-3">
+            <a
+              href="{% url 'user_edit' user.id %}"
+              class="text-[#F5C51C] hover:underline"
+            >
+              Edit
+            </a>
+
+            <form
+              action="{% url 'delete_user' user.id %}"
+              method="POST"
+              class="inline"
+              onsubmit="return confirm('Delete this User?');"
+            >
+              {% csrf_token %}
+              <button
+                type="submit"
+                class="text-red-400 hover:text-red-500 transition cursor-pointer"
+              >
+                Delete
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %} {% else %}
+        <tr>
+          <td colspan="6" class="text-center py-6 text-white/50">
+            No movies found.
+          </td>
+        </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+</main>
+
+{% endblock %}

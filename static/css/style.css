@@ -11,15 +11,55 @@ body {
 }
 
 .bg-gradient-hero {
-    background: 
-        linear-gradient(180deg, rgba(0, 0, 0, 0.7) 2.72%, rgba(0, 0, 0, 0) 35.89%, rgba(0, 0, 0, 0.53) 100%), 
-        linear-gradient(90deg, rgba(0, 0, 0, 0.9) 33.18%, rgba(0, 0, 0, 0) 80.52%),
+    background:
+        linear-gradient(180deg, 
+            rgba(0, 0, 0, 0) 40%, 
+            rgba(0, 0, 0, 0.85) 100%
+        ),
+
+        linear-gradient(180deg, 
+            rgba(0, 0, 0, 0.7) 2.72%, 
+            rgba(0, 0, 0, 0) 35.89%, 
+            rgba(0, 0, 0, 0.53) 100%
+        ), 
+
+        linear-gradient(90deg, 
+            rgba(0, 0, 0, 0.9) 33.18%, 
+            rgba(0, 0, 0, 0) 80.52%
+        ),
+
         url('/static/img/bg-spiderman.png');
-    
+
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
+
+.bg-gradient-hero-admin {
+    background:
+        linear-gradient(180deg, 
+            rgba(0, 0, 0, 0) 40%, 
+            rgba(0, 0, 0, 0.85) 100%
+        ),
+
+        linear-gradient(180deg, 
+            rgba(0, 0, 0, 0.7) 2.72%, 
+            rgba(0, 0, 0, 0) 35.89%, 
+            rgba(0, 0, 0, 0.53) 100%
+        ), 
+
+        linear-gradient(90deg, 
+            rgba(0, 0, 0, 0.9) 33.18%, 
+            rgba(0, 0, 0, 0) 80.52%
+        ),
+
+        url('https://i.pinimg.com/1200x/dc/fb/3b/dcfb3be2d8cf5f9a73b6e4545d08a7ab.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 
 .no-scrollbar::-webkit-scrollbar {
     display: none;
@@ -53,4 +93,8 @@ body {
     width: 100%;
     height: 280px;
     padding: 20px 0;
+}
+
+.genre-card {
+    @apply h-32 rounded-xl flex items-center justify-center text-white text-xl font-semibold cursor-pointer backdrop-blur-md border border-white/10 hover:scale-105 transition;
 }

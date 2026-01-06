@@ -1,11 +1,10 @@
-<nav class="container mx-auto px-24 pt-10">
+<nav class="container mx-auto px-24 pt-10 relative z-50">
     <div class="flex justify-between items-center">
-        <div class="flex uppercase items-center gap-x-1">
-            <div class="bg-[#F5C51C] px-3 py-1 font-bold text-lg rounded-md">
-                asi
-            </div>
-            <h1 class="text-[#F5C51C] text-xl font-bold">hub</h1>
-        </div>
+        <a href="{% url 'home' %}" class="flex uppercase items-center gap-x-1">
+            <h2 class="text-2xl font-extrabold text-white tracking-wide">
+                ASI<span class="text-[#F5C51C]">HUB</span>
+            </h2>
+        </a>
 
         <div class="flex text-white gap-x-10">
             <a href="">New Movie</a>
@@ -13,7 +12,72 @@
             <a href="">Country</a>
             <a href="">Movie</a>
             <a href="">Tv Series</a>
-            <a href=""><i class="fa-solid fa-magnifying-glass cursor-pointer"></i></a>
         </div>
+
+        <div class="flex items-center gap-x-5 relative">
+            <div x-data="{ open: false }" class="relative flex items-center">
+
+                <button x-show="!open" @click="open = true; $nextTick(() => $refs.search.focus())"
+                    class="text-white hover:text-[#F5C51C] transition cursor-pointer">
+                    <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                </button>
+
+                <div x-show="open" x-transition:enter="transition ease-out duration-200"
+                    x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-150"
+                    x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+                    @click.outside="open = false" class="relative">
+                    <input x-ref="search" type="text" placeholder="Search movies..." class="w-64 pl-11 pr-4 py-2.5 rounded-full 
+                   bg-white/10 backdrop-blur-xl 
+                   border border-white/20 
+                   text-white placeholder-white/50
+                   focus:outline-none 
+                   transition" />
+
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-white/70"></i>
+                </div>
+
+            </div>
+
+
+            {% if request.user.is_authenticated %}
+            <div class="relative group">
+                <div
+                    class="w-10 h-10 rounded-full bg-[#F5C51C] text-black flex items-center justify-center font-bold cursor-pointer select-none">
+                    {{ request.user.first_name|slice:":1"|upper }}
+                </div>
+
+                <div
+                    class="absolute right-0 mt-3 w-48 bg-black/70 backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-200 origin-top-right z-50">
+
+                    <div class="px-4 py-3 border-b border-white/10">
+                        <p class="text-white font-semibold">{{ request.user.first_name }}</p>
+                        <p class="text-white/50 text-xs truncate">{{ request.user.email }}</p>
+                    </div>
+
+                    <div class="p-2 space-y-1">
+                        {% if request.user.is_staff or request.user.is_superuser %}
+                        <a href="/adminmovie"
+                            class="block px-4 py-2 rounded-lg text-white/80 hover:bg-white/10 transition">
+                            <i class="fa-solid fa-gauge mr-2 text-[#F5C51C]"></i> Dashboard
+                        </a>
+                        {% endif %}
+
+                        <a href="{% url 'logout' %}" onclick="return confirm('Yakin logout?');"
+                            class="block px-4 py-2 rounded-lg text-red-400 hover:bg-red-500/10 transition">
+                            <i class="fa-solid fa-right-from-bracket mr-2"></i> Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {% else %}
+            <!-- <a href="{% url 'login' %}"
+                class="bg-[#F5C51C] rounded-md px-4 py-3 font-medium hover:bg-[#e0b318] transition">
+                <i class="fa-solid fa-user mr-1"></i> Login Now
+            </a> -->
+            {% endif %}
+        </div>
+
     </div>
 </nav>
