@@ -9,54 +9,39 @@ Movie Website{% endblock %} {% block content %}
       <div class="text-white/60">
         Welcome, <span class="text-white">{{ request.user.first_name }}</span>
       </div>
-      <div
-        class="w-10 h-10 rounded-full bg-[#F5C51C] flex items-center justify-center font-bold text-black"
-      >
+      <div class="w-10 h-10 rounded-full bg-[#F5C51C] flex items-center justify-center font-bold text-black">
         {{ request.user.first_name|slice:":1"|upper }}
       </div>
     </div>
   </div>
 
   <div class="grid grid-cols-4 gap-6 mb-10">
-    <div
-      class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl"
-    >
+    <div class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl">
       <p class="text-white/50 text-sm">Total Movies</p>
       <h3 class="text-white text-3xl font-semibold mt-2">{{ total_movies }}</h3>
     </div>
-    <div
-      class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl"
-    >
+    <div class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl">
       <p class="text-white/50 text-sm">Users</p>
       <h3 class="text-white text-3xl font-semibold mt-2">{{ total_users }}</h3>
     </div>
-    <div
-      class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl"
-    >
+    <div class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl">
       <p class="text-white/50 text-sm">Reviews</p>
       <h3 class="text-white text-3xl font-semibold mt-2">8,231</h3>
     </div>
-    <div
-      class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl"
-    >
+    <div class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl">
       <p class="text-white/50 text-sm">Revenue</p>
       <h3 class="text-white text-3xl font-semibold mt-2">$12,840</h3>
     </div>
   </div>
 
   <div
-    class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl overflow-y-scroll h-[65dvh]"
-  >
+    class="bg-black/50 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl overflow-y-scroll h-[65dvh]">
     <div class="flex justify-between items-center mb-6">
-      <h3 class="text-white text-xl font-semibold">Movie List</h3>
+      <h3 class="text-white text-xl font-semibold">User List</h3>
       <form method="GET" class="relative">
-        <input
-          type="search"
-          name="search_movie"
-          value="{{ search|default:'' }}"
+        <input type="search" name="search_users" value="{{ search|default:'' }}"
           class="bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-white placeholder-white/50 focus:ring-2 focus:ring-[#F5C51C]/60 outline-none"
-          placeholder="Search movie..."
-        />
+          placeholder="Search user..." />
       </form>
     </div>
 
@@ -80,24 +65,14 @@ Movie Website{% endblock %} {% block content %}
           <td>{{ user.is_active }}</td>
           <td>{{ user.date_joined }}</td>
           <td class="text-right space-x-3">
-            <a
-              href="{% url 'user_edit' user.id %}"
-              class="text-[#F5C51C] hover:underline"
-            >
+            <a href="{% url 'user_edit' user.id %}" class="text-[#F5C51C] hover:underline">
               Edit
             </a>
 
-            <form
-              action="{% url 'delete_user' user.id %}"
-              method="POST"
-              class="inline"
-              onsubmit="return confirm('Delete this User?');"
-            >
+            <form action="{% url 'delete_user' user.id %}" method="POST" class="inline"
+              onsubmit="return confirm('Delete this User?');">
               {% csrf_token %}
-              <button
-                type="submit"
-                class="text-red-400 hover:text-red-500 transition cursor-pointer"
-              >
+              <button type="submit" class="text-red-400 hover:text-red-500 transition cursor-pointer">
                 Delete
               </button>
             </form>

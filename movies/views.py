@@ -120,7 +120,7 @@ def delete_movie(request, id):
         movie.delete_with_poster()
         return redirect("admin_movie")
 
-# menampilkan semua user yg terdaftar di database pada halaman adminuser
+
 def user_list(request):
     if not request.user.is_staff:
         return redirect("home")
