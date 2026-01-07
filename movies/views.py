@@ -46,20 +46,27 @@ def login(request):
     return render(request, "auth/login.html")
 
 def home(request):
-    return render(request, 'index.html')
+    all_movies = Movie.objects.all()
+    recommended_movies = Movie.objects.oldest(limit=5)
+    trending_movies = Movie.objects.latest(limit=5)
 
-def detail_movie(request):
+    return render(request, 'index.html', {
+        "all_movies": all_movies,
+        "recommended_movies": recommended_movies,
+        "trending_movies": trending_movies
+    })
+
+def detail_movie(request, id):
     if not request.user.is_authenticated:
         return redirect("home")
 
-    movie_panji = Movie.objects.get(id=16)
+    movie = Movie.objects.get(id=id)
     all_movies = Movie.objects.all()
-
     recommended_movies = Movie.objects.oldest(limit=5)
     trending_movies = Movie.objects.latest(limit=5)
 
     return render(request, 'detail_movie.html', {
-        "movie": movie_panji, 
+        "movie": movie, 
         "all_movies": all_movies,
         "recommended_movies": recommended_movies,
         "trending_movies": trending_movies
