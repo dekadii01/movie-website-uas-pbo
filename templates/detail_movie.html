@@ -1,4 +1,5 @@
 {% extends "partials/base.html" %}
+{% load static %}
 {% block title %}{{ movie.title }}{% endblock %}
 
 {% block content %}
@@ -7,8 +8,22 @@
     {% include 'partials/navbar.html' %}
 
     <div class="absolute inset-0">
+        {% if movie.title == 'NARCOS' %}
         <img src="https://i.pinimg.com/1200x/f1/0f/85/f10f851816eb5e2cd48c7dd18ba2a5fa.jpg"
             class="w-full h-full object-cover">
+        {% elif movie.title == 'Zootopia 2' %}
+        <img src="https://i.pinimg.com/1200x/34/7e/07/347e077648a0f96553eea98dea28a70e.jpg"
+            class="w-full h-full object-cover">
+        {% elif movie.title == 'Mission: Impossible – The Final Reckoning' %}
+        <img src="https://i.pinimg.com/1200x/1c/47/5c/1c475c69bad5d5c68030f8271feae7aa.jpg"
+            class="w-full h-full object-cover">
+        {% elif movie.title == 'The Electric State' %}
+        <img src="https://i.pinimg.com/1200x/30/ee/90/30ee90d3189415c00da54a7e4febbebc.jpg"
+            class="w-full h-full object-cover">
+        {% elif movie.title == 'Dilan 1945' %}
+        <img src="{% static 'img/film-yoga-bg.jpg' %}" class="w-full h-full object-cover">
+        {% endif %}
+
         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/30"></div>
     </div>
 
