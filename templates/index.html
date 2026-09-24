@@ -8,12 +8,13 @@
     <!-- hero section -->
     <div class="min-h-[100dvh] bg-gradient-hero">
         {% include "partials/navbar.html" %}
-        <div class="container mx-auto px-24 my-[15dvh]">
-            <h1 class="text-white text-[68px] font-semibold leading-none -tracking-[0.03em]">Spider Man <br>No Way Home
+        <div class="container mx-auto px-5 md:px-12 lg:px-24 my-10 lg:my-[15dvh]">
+            <h1 class="text-white text-4xl sm:text-5xl lg:text-[68px] font-semibold leading-none -tracking-[0.03em]">
+                Spider Man <br>No Way Home
             </h1>
-            <div class="flex mt-4 gap-x-3">
+            <div class="flex flex-wrap mt-4 gap-3">
                 <div class="bg-[#F5C51C] text-sm px-2 py-1 rounded-md font-bold">IMDb</div>
-                <div class="flex gap-x-3">
+                <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
                     <p class="text-white">8.2 <span style="color: rgba(255, 255, 255, 0.4);">(12.827)</span>
                     </p>
                     <p class="text-white"> &#8226;</p>
@@ -24,14 +25,14 @@
                     <p style="color: rgba(255, 255, 255, 0.8);">Sci-fi</p>
                 </div>
             </div>
-            <p class="text-white text-base w-[40%] mt-4">Scelerisque sed ultricies tristique. Mi in vivamus aliquam
+            <p class="text-white text-base w-full sm:w-[80%] lg:w-[40%] mt-4">Scelerisque sed ultricies tristique. Mi in vivamus aliquam
                 varius eu
                 felis.
                 Id
                 ultricies diam turpis mi
                 tincidunt. Ut morbi sed urna tempor imperdiet eu scelerisque egestas. Interdum mi orci suspendisse in
                 s... <span class="text-[#F5C51C] cursor-pointer hover:underline">See more</span></p>
-            <div class="flex mt-4 gap-x-4">
+            <div class="flex flex-wrap mt-4 gap-4">
                 <a href="" class="bg-none border text-white/60 border-white/60 rounded-md px-4 py-3 font-medium">Watch
                     trailer</a>
                 {% if user.is_authenticated %}
@@ -44,8 +45,8 @@
                 {% endif %}
             </div>
         </div>
-        <div class="pb-10 container mx-auto px-24">
-            <div class=" flex gap-x-4">
+        <div class="pb-10 container mx-auto px-5 md:px-12 lg:px-24">
+            <div class="hidden sm:flex gap-x-4">
                 <div class="bg-none border border-white/60 rounded-md pl-4 py-3 pb-3 pr-2 text-white cursor-pointer"
                     id="left-button">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#fff" height="24" width="24">
@@ -60,7 +61,7 @@
                     </svg>
                 </div>
             </div>
-            <div class="swiper movieSwiper mt-10 no-scrollbar">
+            <div class="swiper movieSwiper mt-4 sm:mt-10 no-scrollbar">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide"><img src="/static/img/movie1.png"></div>
                     <div class="swiper-slide"><img src="/static/img/movie2.png"></div>
@@ -79,23 +80,23 @@
     <!-- end hero section -->
 
     <!-- movie sections -->
-    <div class="bg-black py-20">
+    <div class="bg-black py-12 lg:py-20">
 
         <!-- Trending Now -->
-        <div class="container mx-auto px-24 mb-20">
+        <div class="container mx-auto px-5 md:px-12 lg:px-24 mb-12 lg:mb-20">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-white text-3xl font-semibold tracking-tight">
+                <h2 class="text-white text-2xl sm:text-3xl font-semibold tracking-tight">
                     Trending <span class="text-[#F5C51C]">Now</span>
                 </h2>
                 <a href="#" class="text-white/50 hover:text-white text-sm">See all</a>
             </div>
 
-            <div class="flex gap-x-6">
+            <div class="flex gap-x-4 sm:gap-x-6 overflow-x-auto no-scrollbar pb-2">
                 {% for recommended_movie in recommended_movies %}
-                <a href="{% url 'detail_movie' recommended_movie.id %}" class="min-w-[200px] group cursor-pointer">
+                <a href="{% url 'detail_movie' recommended_movie.id %}" class="min-w-[140px] sm:min-w-[200px] group cursor-pointer">
                     <div class="relative overflow-hidden rounded-xl">
                         <img src="{{ recommended_movie.poster.url }}"
-                            class="w-full h-[300px] object-cover group-hover:scale-110 transition duration-500" />
+                            class="w-full h-[210px] sm:h-[300px] object-cover group-hover:scale-110 transition duration-500" />
                         <div
                             class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
                             <p class="text-white font-semibold">{{ recommended_movie.title }}</p>
@@ -107,17 +108,17 @@
         </div>
 
         <!-- Recommended -->
-        <div class="container mx-auto px-24 mb-20">
-            <h2 class="text-white text-3xl font-semibold mb-6">
+        <div class="container mx-auto px-5 md:px-12 lg:px-24 mb-12 lg:mb-20">
+            <h2 class="text-white text-2xl sm:text-3xl font-semibold mb-6">
                 Recommended <span class="text-[#F5C51C]">For You</span>
             </h2>
 
-            <div class="grid grid-cols-5 gap-6">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6">
                 {% for all_movie in all_movies %}
                 <a href="{% url 'detail_movie' all_movie.id %}" class="group cursor-pointer">
                     <div class="relative overflow-hidden rounded-xl">
                         <img src="{{ all_movie.poster.url }}"
-                            class="w-full h-[280px] object-cover group-hover:scale-110 transition duration-500">
+                            class="w-full h-[200px] sm:h-[240px] lg:h-[280px] object-cover group-hover:scale-110 transition duration-500">
                         <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
                             <p class="text-white text-sm font-medium">{{ all_movie.title }}</p>
                             <p class="text-white/50 text-xs">{{ all_movie.genre }}</p>
@@ -130,10 +131,10 @@
 
 
         <!-- Movie by Genre (Cinematic Version) -->
-        <div class="container mx-auto px-24 mb-20">
-            <div class="flex justify-between items-end mb-10">
+        <div class="container mx-auto px-5 md:px-12 lg:px-24 mb-12 lg:mb-20">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-end gap-4 mb-8 lg:mb-10">
                 <div>
-                    <h2 class="text-white text-4xl font-semibold tracking-tight">
+                    <h2 class="text-white text-3xl sm:text-4xl font-semibold tracking-tight">
                         Browse by <span class="text-[#F5C51C]">Genre</span>
                     </h2>
                     <p class="text-white/50 mt-2">
@@ -143,10 +144,10 @@
                 <a href="#" class="text-white/50 hover:text-white text-sm">View all genres</a>
             </div>
 
-            <div class="grid grid-cols-12 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-12 gap-6">
 
                 <!-- Action -->
-                <div class="col-span-5 group relative h-[320px] rounded-2xl overflow-hidden cursor-pointer">
+                <div class="sm:col-span-5 group relative h-[220px] sm:h-[320px] rounded-2xl overflow-hidden cursor-pointer">
                     <img src="https://i.pinimg.com/1200x/6b/b5/6f/6bb56ffc81e603ead31ffa716543ea7d.jpg"
                         class="absolute inset-0 w-full h-full object-cover scale-110 group-hover:scale-100 transition duration-700" />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
@@ -159,7 +160,7 @@
                 </div>
 
                 <!-- Romance -->
-                <div class="col-span-4 group relative h-[320px] rounded-2xl overflow-hidden cursor-pointer">
+                <div class="sm:col-span-4 group relative h-[220px] sm:h-[320px] rounded-2xl overflow-hidden cursor-pointer">
                     <img src="https://i.pinimg.com/736x/bc/02/ea/bc02ea225d293fc5370edb8761e40335.jpg"
                         class="absolute inset-0 w-full h-full object-cover scale-110 group-hover:scale-100 transition duration-700" />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
@@ -172,7 +173,7 @@
                 </div>
 
                 <!-- Sci-Fi -->
-                <div class="col-span-3 group relative h-[320px] rounded-2xl overflow-hidden cursor-pointer">
+                <div class="sm:col-span-3 group relative h-[220px] sm:h-[320px] rounded-2xl overflow-hidden cursor-pointer">
                     <img src="https://i.pinimg.com/1200x/31/19/c2/3119c2862e72a656270e893e1c770312.jpg"
                         class="absolute inset-0 w-full h-full object-cover scale-110 group-hover:scale-100 transition duration-700" />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
@@ -185,7 +186,7 @@
                 </div>
 
                 <!-- Drama -->
-                <div class="col-span-3 group relative h-[260px] rounded-2xl overflow-hidden cursor-pointer">
+                <div class="sm:col-span-3 group relative h-[200px] sm:h-[260px] rounded-2xl overflow-hidden cursor-pointer">
                     <img src="https://i.pinimg.com/736x/42/da/03/42da0337b157fb0b614722cb5afcc466.jpg"
                         class="absolute inset-0 w-full h-full object-cover scale-110 group-hover:scale-100 transition duration-700" />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
@@ -196,7 +197,7 @@
                 </div>
 
                 <!-- Horror -->
-                <div class="col-span-5 group relative h-[260px] rounded-2xl overflow-hidden cursor-pointer">
+                <div class="sm:col-span-5 group relative h-[200px] sm:h-[260px] rounded-2xl overflow-hidden cursor-pointer">
                     <img src="https://i.pinimg.com/1200x/3e/97/a6/3e97a67369f108696390d15696920557.jpg"
                         class="absolute inset-0 w-full h-full object-cover scale-110 group-hover:scale-100 transition duration-700" />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
@@ -207,7 +208,7 @@
                 </div>
 
                 <!-- Fantasy -->
-                <div class="col-span-4 group relative h-[260px] rounded-2xl overflow-hidden cursor-pointer">
+                <div class="sm:col-span-4 group relative h-[200px] sm:h-[260px] rounded-2xl overflow-hidden cursor-pointer">
                     <img src="https://i.pinimg.com/736x/42/0c/63/420c635a4965ac34bf46f67cd473b8ad.jpg"
                         class="absolute inset-0 w-full h-full object-cover scale-110 group-hover:scale-100 transition duration-700" />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
@@ -221,12 +222,12 @@
         </div>
 
         <!-- Award Movies -->
-        <div class="container mx-auto px-24 mb-24">
-            <h2 class="text-white text-3xl font-semibold mb-8">
+        <div class="container mx-auto px-5 md:px-12 lg:px-24 mb-16 lg:mb-24">
+            <h2 class="text-white text-2xl sm:text-3xl font-semibold mb-8">
                 Award <span class="text-[#F5C51C]">Movies</span>
             </h2>
 
-            <div class="grid grid-cols-5 gap-6">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6">
                 {% for trending_movies in trending_movies %}
                 <a href="{% url 'detail_movie' trending_movies.id %}"
                     class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden hover:scale-105 transition cursor-pointer">

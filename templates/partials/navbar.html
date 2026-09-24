@@ -1,12 +1,12 @@
-<nav class="container mx-auto px-24 pt-10 relative z-50">
+<nav class="container mx-auto px-5 md:px-12 lg:px-24 pt-6 lg:pt-10 relative z-50" x-data="{ mobileOpen: false }">
     <div class="flex justify-between items-center">
         <a href="{% url 'home' %}" class="flex uppercase items-center gap-x-1">
-            <h2 class="text-2xl font-extrabold text-white tracking-wide">
+            <h2 class="text-xl lg:text-2xl font-extrabold text-white tracking-wide">
                 ASI<span class="text-[#F5C51C]">HUB</span>
             </h2>
         </a>
 
-        <div class="flex text-white gap-x-10">
+        <div class="hidden lg:flex text-white gap-x-10">
             <a href="">New Movie</a>
             <a href="">Genre</a>
             <a href="">Country</a>
@@ -14,7 +14,7 @@
             <a href="">Tv Series</a>
         </div>
 
-        <div class="flex items-center gap-x-5 relative">
+        <div class="flex items-center gap-x-3 lg:gap-x-5 relative">
             <div x-data="{ open: false }" class="relative flex items-center">
 
                 <button x-show="!open" @click="open = true; $nextTick(() => $refs.search.focus())"
@@ -26,12 +26,12 @@
                     x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
                     x-transition:leave="transition ease-in duration-150"
                     x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
-                    @click.outside="open = false" class="relative">
-                    <input x-ref="search" type="text" placeholder="Search movies..." class="w-64 pl-11 pr-4 py-2.5 rounded-full 
-                   bg-white/10 backdrop-blur-xl 
-                   border border-white/20 
+                    @click.outside="open = false" class="absolute right-0 top-1/2 -translate-y-1/2">
+                    <input x-ref="search" type="text" placeholder="Search movies..." class="w-44 sm:w-64 pl-11 pr-4 py-2.5 rounded-full
+                   bg-white/10 backdrop-blur-xl
+                   border border-white/20
                    text-white placeholder-white/50
-                   focus:outline-none 
+                   focus:outline-none
                    transition" />
 
                     <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-white/70"></i>
@@ -77,7 +77,21 @@
                 <i class="fa-solid fa-user mr-1"></i> Login Now
             </a> -->
             {% endif %}
+
+            <button @click="mobileOpen = !mobileOpen" class="lg:hidden text-white text-xl">
+                <i class="fa-solid" :class="mobileOpen ? 'fa-xmark' : 'fa-bars'"></i>
+            </button>
         </div>
 
+    </div>
+
+    <!-- mobile menu -->
+    <div x-show="mobileOpen" x-transition @click.outside="mobileOpen = false"
+        class="lg:hidden mt-4 flex flex-col gap-y-4 text-white bg-black/70 backdrop-blur-xl border border-white/10 rounded-xl p-5">
+        <a href="" @click="mobileOpen = false">New Movie</a>
+        <a href="" @click="mobileOpen = false">Genre</a>
+        <a href="" @click="mobileOpen = false">Country</a>
+        <a href="" @click="mobileOpen = false">Movie</a>
+        <a href="" @click="mobileOpen = false">Tv Series</a>
     </div>
 </nav>
